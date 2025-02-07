@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Kurs BroCode</title>
+</head>
+<body>
+
+    <form>
+        <h1>Temperature Conwersion</h1>
+        <input type="number" id="textbox" value="0"> <br>
+
+        <input type="radio" id="toFahrenheit" name="unit">
+        <label for="toFahrenheit">°C to °F</label> <br>
+
+        <input type="radio" id="toCelsius" name="unit">
+        <label for="toCelsius">°F to °C</label> <br>
+
+        <button type="button" onclick="convert()">Try</button>
+
+        <p id="result">Select a unit</p>
+    </form>
+
+
+    <script src="index.js"></script>
+</body>
+</html>
