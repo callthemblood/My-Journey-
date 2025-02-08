@@ -1,18 +1,41 @@
-function rollDice(){
+function generetePasswd(length, includeLowercase, includeUppercase, includeNubmers, includeSymbols){
 
-    const numOfDice = document.getElementById("diceNumber").value;
-    const diceResult = document.getElementById("diceResult");
-    const diceImages = document.getElementById("diceImages");
-    const values = [];
-    const images = [];
+    const lovercaseChars = "abcdefghijklmnopqrstuvwxyz";
+    const uppercaseChars = lovercaseChars.toUpperCase();
+    const numberChars = "0123456789";
+    const symbolChars = "!@#$%^&*()-_=+[{]}\\|;:'\",<.>/?";
 
-    for(let i = 0; i < numOfDice; i++) {
-        const value = Math.floor(Math.random() * 6) + 1;
-        values.push(value);
-        images.push(`<img src="kostki_/dice${value}.png">`);
+    let allowedChars = "";
+    let password = "";
+
+    allowedChars += includeLowercase ? lovercaseChars : "";
+    allowedChars += includeUppercase? uppercaseChars : "";
+    allowedChars += includeNubmers? numberChars : "";
+    allowedChars += includeSymbols? symbolChars : "";
+
+    if(length <= 0){
+        return `(password length must be at least 1)`
+    }
+    if(allowedChars.length === 0){
+        return `(at least one set of character must be selected)`;
     }
 
-    diceResult.textContent = `dice: ${values.join(', ')}`; 
-    diceImages.innerHTML = images.join(' ');
-
+    for(let i = 0; i < length; i++){	
+        const randomIndex = Math.floor(Math.random() * allowedChars.length);
+        password += allowedChars[randomIndex];
+    }
+    return password;
 }
+
+const passwordLength = 25;
+const includeLowercase = true;
+const includeUppercase = true;
+const includeNumbers = true;
+const includeSymbols = true;
+
+const password = generetePasswd(passwordLength, 
+                                includeLowercase, 
+                                includeUppercase, 
+                                includeNumbers,
+                                includeSymbols);
+console.log(`Genereted password: ${password}`);
